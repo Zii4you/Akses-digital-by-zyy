@@ -1,14 +1,15 @@
 # 🚀 Akses Digital by ZY
 
-> **Belajar, Berkarya, dan Berkembang di Dunia Digital.**
-
-Selamat datang di **Akses Digital by ZY**.
-
-Repositori ini merupakan kumpulan panduan, dokumentasi, proyek open-source, dan sumber belajar yang dirancang untuk membantu pemula maupun pengembang dalam mempelajari teknologi digital secara bertahap, aman, dan bertanggung jawab.
+<p align="center">
+  <b>Belajar • Berkarya • Berkembang di Dunia Digital</b><br>
+  Panduan, dokumentasi, dan proyek open-source untuk pengembangan keterampilan teknologi.
+</p>
 
 ---
 
-# 📚 Daftar Isi
+## 📖 Tentang Proyek
+
+**Akses Digital by ZY** merupakan repositori open-source yang menyediakan panduan, dokumentasi, contoh proyek, dan sumber belajar mengenai:
 
 - 📱 Android
 - 💻 Termux
@@ -16,76 +17,123 @@ Repositori ini merupakan kumpulan panduan, dokumentasi, proyek open-source, dan 
 - 🌿 Git & GitHub
 - 💡 Pemrograman
 - ⚙️ Otomatisasi
-- 🔐 Keamanan Siber
-- 📖 Dokumentasi
-- 🛠️ Proyek Open Source
+- 🔐 Edukasi Keamanan Siber
+
+Tujuan repositori ini adalah membantu pemula maupun pengembang mempelajari teknologi secara bertahap, praktis, aman, dan bertanggung jawab.
+
+---
+
+# 📚 Daftar Isi
+
+- Tentang Proyek
+- Fitur
+- Visi
+- Misi
+- Topik Pembelajaran
+- Struktur Folder
+- Instalasi
+- Cara Menggunakan
+- Roadmap
+- FAQ
+- Kontribusi
+- Aturan Penggunaan
+- Lisensi
+
+---
+
+# ✨ Fitur
+
+✅ Dokumentasi Lengkap
+
+✅ Tutorial Langkah demi Langkah
+
+✅ Proyek Open Source
+
+✅ Contoh Script
+
+✅ Panduan Git & GitHub
+
+✅ Panduan Android
+
+✅ Panduan Linux
+
+✅ Panduan Termux
+
+✅ Edukasi Keamanan Siber
 
 ---
 
 # 🎯 Visi
 
-Menjadi repositori pembelajaran teknologi digital yang mudah diakses, berkualitas, dan bermanfaat bagi siapa saja yang ingin mengembangkan keterampilan di bidang teknologi.
+Menjadi repositori pembelajaran teknologi digital yang mudah diakses, berkualitas, dan bermanfaat bagi siapa saja yang ingin meningkatkan keterampilan teknis.
 
 ---
 
 # 🎓 Misi
 
-- Menyediakan materi pembelajaran yang mudah dipahami.
-- Membagikan dokumentasi dan tutorial secara terbuka.
+- Menyediakan materi yang mudah dipahami.
+- Mendukung pembelajaran mandiri.
+- Membangun dokumentasi yang berkualitas.
+- Mendorong kolaborasi komunitas.
 - Mengembangkan proyek open-source yang bermanfaat.
-- Mendukung pembelajaran teknologi secara aman, etis, dan bertanggung jawab.
-- Mendorong kolaborasi dalam komunitas pengembang.
 
 ---
 
 # 📂 Topik Pembelajaran
 
 ## 📱 Android
+
 - Dasar Android
-- Pengelolaan aplikasi
-- Tips dan trik
+- Pengelolaan Aplikasi
+- Tips & Trik
 
 ## 💻 Termux
+
 - Instalasi
-- Konfigurasi
 - Package Manager
 - Shell
+- Bash
 - Script
 
 ## 🐧 Linux
+
 - Command Line
 - File System
+- Permission
 - Bash
-- Administrasi dasar
 
 ## 🌿 Git & GitHub
-- Git dasar
-- Branch
+
+- Repository
 - Commit
-- Push & Pull
-- Repository Management
+- Branch
+- Merge
+- Pull Request
 
 ## 💡 Pemrograman
+
 - HTML
 - CSS
 - JavaScript
 - Python
-- Bash Script
+- Bash
 
 ## ⚙️ Otomatisasi
+
 - Shell Script
 - Workflow
-- Task Automation
+- Automation
 
-## 🔐 Keamanan Siber
-- Dasar keamanan sistem
-- Praktik penggunaan yang aman
-- Privasi digital
-- Edukasi keamanan siber
+## 🔐 Edukasi Keamanan Siber
+
+- Dasar Keamanan Sistem
+- Privasi Digital
+- Praktik Penggunaan yang Aman
+- Kesadaran Keamanan
 
 ---
 
-# 📁 Struktur Repositori
+# 📁 Struktur Folder
 
 ```
 Akses-Digital/
@@ -98,14 +146,79 @@ Akses-Digital/
 ├── Automation/
 ├── Cybersecurity/
 ├── Docs/
+├── Assets/
 └── README.md
 ```
 
 ---
 
-# 🚀 Tujuan
+# ⚙️ Instalasi
 
-Repositori ini dibuat sebagai media pembelajaran dan dokumentasi agar siapa pun dapat mempelajari teknologi digital melalui contoh, tutorial, serta proyek yang mudah dipahami.
+Clone repositori:
+
+```bash
+git clone https://github.com/USERNAME/Akses-digital-by-zyy.git
+```
+
+Masuk ke folder:
+
+```bash
+cd Akses-digital-by-zyy
+```
+
+Jika menggunakan Termux, pastikan Git sudah terpasang:
+
+```bash
+pkg update && pkg upgrade -y
+pkg install git -y
+```
+
+---
+
+# 🚀 Cara Menggunakan
+
+1. Clone repository.
+2. Buka folder sesuai topik.
+3. Ikuti dokumentasi yang tersedia.
+4. Jalankan contoh proyek bila diperlukan.
+5. Pelajari dan modifikasi sesuai kebutuhan.
+
+---
+
+# 🗺️ Roadmap
+
+- [x] README
+- [x] Struktur Dokumentasi
+- [ ] Android Dasar
+- [ ] Termux Dasar
+- [ ] Linux Dasar
+- [ ] Git & GitHub
+- [ ] Bash Script
+- [ ] Python
+- [ ] Automation
+- [ ] Website Dokumentasi
+
+---
+
+# ❓ FAQ
+
+### Apa tujuan repositori ini?
+
+Sebagai media belajar teknologi digital secara terbuka.
+
+### Apakah gratis?
+
+Ya.
+
+### Apakah pemula bisa belajar?
+
+Tentu.
+
+### Bolehkah berkontribusi?
+
+Ya.
+
+Silakan membuat Issue atau Pull Request.
 
 ---
 
@@ -113,7 +226,7 @@ Repositori ini dibuat sebagai media pembelajaran dan dokumentasi agar siapa pun 
 
 Kontribusi sangat terbuka.
 
-Apabila ingin berkontribusi, silakan:
+Langkah:
 
 1. Fork repository
 2. Buat branch baru
@@ -121,60 +234,27 @@ Apabila ingin berkontribusi, silakan:
 4. Commit perubahan
 5. Kirim Pull Request
 
-Saran, perbaikan dokumentasi, maupun ide pengembangan sangat dihargai.
-
 ---
 
 # 📌 Aturan Penggunaan
 
-- Gunakan materi hanya untuk tujuan pembelajaran.
-- Hormati lisensi proyek.
+- Gunakan materi untuk tujuan pembelajaran.
+- Hormati lisensi setiap proyek.
 - Jangan gunakan informasi dalam repositori ini untuk aktivitas yang melanggar hukum atau merugikan pihak lain.
 - Terapkan praktik keamanan dan etika dalam penggunaan teknologi.
 
 ---
 
-# 📈 Pengembangan
-
-Rencana pengembangan repositori:
-
-- ✅ Tutorial Android
-- ✅ Panduan Termux
-- ✅ Git & GitHub
-- 🔄 Bash Script
-- 🔄 Python
-- 🔄 Linux Administration
-- 🔄 Automation Tools
-- 🔄 Dokumentasi Lengkap
-
----
-
-# 📞 Kontak
-
-Jika memiliki pertanyaan, saran, atau ingin berdiskusi mengenai proyek ini, silakan gunakan fitur **Issues** atau **Discussions** pada GitHub.
-
----
-
-# ⭐ Dukungan
-
-Apabila repositori ini bermanfaat:
-
-⭐ Berikan **Star**
-
-🍴 Fork repository
-
-📢 Bagikan kepada orang lain
-
----
-
 # 📄 Lisensi
 
-Repositori ini menggunakan lisensi **MIT License**.
+Repositori ini menggunakan **MIT License**.
 
 ---
 
-## ❤️ Terima Kasih
+# 🙏 Terima Kasih
 
 Terima kasih telah mengunjungi **Akses Digital by ZY**.
 
-Semoga repositori ini dapat menjadi sumber belajar yang bermanfaat bagi siapa saja yang ingin mengembangkan keterampilan di bidang teknologi digital.
+Semoga repositori ini menjadi sumber belajar yang bermanfaat bagi semua orang yang ingin mengembangkan keterampilan di bidang teknologi digital.
+
+⭐ Jangan lupa memberikan **Star** apabila repositori ini bermanfaat.
