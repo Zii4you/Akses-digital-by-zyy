@@ -157,7 +157,7 @@ Akses-Digital/
 Clone repositori:
 
 ```bash
-git clone https://github.com/USERNAME/Akses-digital-by-zyy.git
+git clone https://github.com/zii4you/Akses-digital-by-zyy.git
 ```
 
 Masuk ke folder:
