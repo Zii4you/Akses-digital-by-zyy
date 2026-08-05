@@ -3,165 +3,445 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inspirasi Anak Muda Sukses</title>
+<title>MUZI NEWS - Portal Berita</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-body{
-    background:#fff;
-    color:#333;
-}
-.container{
-    max-width:760px;
-    margin:auto;
-}
-.header{
-    padding:20px;
-    border-bottom:1px solid #ddd;
-}
-.logo{
-    font-size:38px;
-    color:#ff5a00;
-    font-weight:bold;
-}
-.breadcrumb{
-    color:#888;
-    margin-top:10px;
-    font-size:14px;
-}
-.title{
-    font-size:32px;
-    font-weight:bold;
-    line-height:1.3;
-    margin-top:20px;
-}
-.desc{
-    color:#666;
-    margin-top:15px;
-    font-size:22px;
-    line-height:1.6;
-}
-.author{
-    margin-top:20px;
-    color:#777;
-}
-.author b{
-    color:#0a58ca;
-}
-img{
-    width:100%;
-    margin:30px 0;
-    border-radius:8px;
-}
-.content{
-    font-size:24px;
-    line-height:1.4;
-}
-.content p{
-    margin-bottom:24px;
-}
-h2{
-    margin:40px 0 20px;
-    font-size:24px;
-}
-.quote{
-    padding:20px;
-    border-left:5px solid #ff5a00;
-    background:#fafafa;
-    font-style:italic;
-}
-.footer{
-    margin-top:60px;
-    padding:30px;
-    text-align:center;
-    color:#777;
-    border-top:1px solid #ddd;
-}
-</style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+color:#222;
+line-height:1.8;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+header{
+position:sticky;
+top:0;
+background:#fff;
+z-index:1000;
+box-shadow:0 2px 12px rgba(0,0,0,.08);
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px;
+}
+
+.menu-btn,
+.search-btn{
+font-size:26px;
+cursor:pointer;
+}
+
+.logo{
+font-size:34px;
+font-weight:800;
+color:#ff4b2b;
+}
+
+.progress{
+height:4px;
+background:#eee;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#ff4b2b;
+transition:.2s;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:#fff;
+}
+
+.breadcrumb{
+padding:20px;
+font-size:14px;
+color:#666;
+}
+
+.breadcrumb span{
+color:#ff4b2b;
+}
+
+.article{
+padding:0 22px 60px;
+}
+
+.category{
+display:inline-block;
+padding:6px 14px;
+background:#ff4b2b;
+color:#fff;
+border-radius:40px;
+font-size:13px;
+margin-bottom:20px;
+}
+
+.title{
+font-size:46px;
+font-weight:800;
+line-height:1.25;
+margin-bottom:18px;
+}
+
+.subtitle{
+font-size:20px;
+color:#555;
+margin-bottom:20px;
+}
+
+.meta{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+font-size:14px;
+color:#666;
+margin-bottom:30px;
+}
+
+.hero{
+border-radius:18px;
+overflow:hidden;
+margin-bottom:10px;
+}
+
+.hero img{
+width:100%;
+}
+
+.caption{
+font-size:13px;
+color:#777;
+margin-bottom:35px;
+}
+
+.content p{
+font-size:20px;
+margin-bottom:28px;
+text-align:justify;
+}
+
+.content p:first-child:first-letter{
+float:left;
+font-size:64px;
+line-height:55px;
+padding-right:10px;
+font-weight:bold;
+color:#ff4b2b;
+}
+
+.content h2{
+font-size:34px;
+margin:60px 0 25px;
+}
+
+.content h3{
+font-size:28px;
+margin:50px 0 20px;
+}
+
+.section-image{
+margin:25px 0;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 10px 35px rgba(0,0,0,.12);
+}
+
+blockquote{
+margin:30px 0;
+padding:20px;
+border-left:5px solid #ff4b2b;
+background:#fafafa;
+font-size:22px;
+font-style:italic;
+}
+
+.author-card{
+margin-top:70px;
+padding:25px;
+background:#fafafa;
+border-radius:16px;
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.author-card img{
+width:90px;
+height:90px;
+border-radius:50%;
+object-fit:cover;
+}
+
+footer{
+margin-top:60px;
+background:#111;
+color:#fff;
+padding:40px;
+text-align:center;
+}
+
+</style>
 </head>
+
 <body>
+
+<header>
+
+<div class="topbar">
+
+<div class="menu-btn">
+☰
+</div>
+
+<div class="logo">
+MUZI NEWS
+</div>
+
+<div class="search-btn">
+🔍
+</div>
+
+</div>
+
+<div class="progress">
+<div class="progress-bar" id="bar"></div>
+</div>
+
+</header>
 
 <div class="container">
 
-<div class="header">
-<div class="logo">LIPUTAN6</div>
-
 <div class="breadcrumb">
-Home › ShowBiz › Selebritis
+Home <span>›</span> Inspirasi <span>›</span> Teknologi
 </div>
 
-<div class="title">
-Selebgram Sahrul Agusti Terus Berkembang, Buktikan Anak Muda Bisa Meraih Kesuksesan Lewat Kerja Keras
+<div class="article">
+
+<div class="category">
+INSPIRASI
 </div>
 
-<div class="desc">
-Berawal dari hobi bermain gim hingga membangun bisnis digital, perjalanan Sahrul Agusti menjadi inspirasi bagi banyak generasi muda untuk terus berusaha dan tidak mudah menyerah.
+<h1 class="title">
+Muzi Adriyan Bangun Website Modern, Bukti Anak Muda Bisa Berkarya di Era Digital
+</h1>
+
+<div class="subtitle">
+Berawal dari rasa ingin tahu terhadap dunia pemrograman, Muzi Adriyan berhasil mengembangkan berbagai proyek website modern yang menarik perhatian banyak pengguna internet.
 </div>
 
-<div class="author">
-Oleh <b>Redaksi</b> • 5 Agustus 2026
-</div>
+<div class="meta">
+
+<span>✍ Redaksi Muzi News</span>
+
+<span>📅 5 Agustus 2026</span>
+
+<span>🕘 21.00 WIB</span>
+
+<span>⏱ 8 menit membaca</span>
+
 </div>
 
-<img src="images/sahrul1.jpg">
+<div class="hero">
+
+<img src="hero.jpg">
+
+</div>
+
+<div class="caption">
+Dokumentasi kegiatan pengembangan website.
+</div>
 
 <div class="content">
 
 <p>
-Nama Sahrul Agusti mulai dikenal publik melalui aktivitasnya di dunia game online dan media sosial. Dengan konsistensi serta dedikasi yang tinggi, ia berhasil membangun komunitas pengikut yang terus berkembang dari waktu ke waktu.
+
+Di usia muda, Muzi Adriyan terus menunjukkan semangat belajar yang tinggi dalam bidang teknologi. Berbagai proyek website modern berhasil dibuat secara mandiri menggunakan HTML, CSS, dan JavaScript tanpa bergantung pada framework besar.
+
 </p>
 
 <p>
-Tidak hanya aktif sebagai kreator konten, ia juga mengembangkan bisnis digital yang berhubungan dengan kebutuhan para pemain game. Usaha tersebut menjadi salah satu sumber penghasilan yang terus bertumbuh.
+
+Konsistensi menjadi salah satu kunci utama dalam setiap proses pembelajaran. Dari proyek sederhana hingga dashboard yang lebih kompleks, seluruh pengalaman tersebut menjadi fondasi untuk mengembangkan kemampuan sebagai web developer.
+
 </p>
 
-<h2>Titik Balik Perjalanan</h2>
+<h2>
+Perjalanan Awal
+</h2>
 
-<img src="images/sahrul2.jpg">
+<div class="section-image">
+
+<img src="perjalanan.jpg">
+
+</div>
 
 <p>
-Menurut Sahrul, perjalanan menuju kesuksesan bukanlah sesuatu yang instan. Ia mengaku pernah menghadapi berbagai tantangan, termasuk kondisi ekonomi keluarga yang sulit. Namun pengalaman tersebut justru menjadi motivasi untuk terus maju.
-</p>
 
-<div class="quote">
-"Semua orang memiliki kesempatan untuk sukses selama mau belajar, bekerja keras, dan tidak mudah menyerah."
-</div>
-
-<h2>Kerja Keras dan Konsistensi</h2>
-
-<img src="images/sahrul3.jpg">
+Perjalanan dimulai dari rasa penasaran terhadap cara kerja sebuah website. Dengan memanfaatkan berbagai sumber belajar gratis di internet, kemampuan tersebut berkembang sedikit demi sedikit hingga mampu menghasilkan website yang modern, cepat, dan responsif.
 
 <p>
-Dengan kerja keras yang dilakukan setiap hari, bisnis yang dibangun perlahan berkembang. Ia percaya bahwa keberhasilan bukan hanya soal keberuntungan, melainkan hasil dari proses panjang yang dijalani dengan penuh kesabaran.
+
+Semakin banyak proyek yang dikerjakan, semakin besar pula pengalaman yang diperoleh. Tidak hanya mempelajari tampilan antarmuka, tetapi juga memahami bagaimana sebuah website bekerja secara menyeluruh mulai dari struktur halaman, optimasi performa, hingga pengalaman pengguna.
+
+</p>
+
+<blockquote>
+
+"Kesuksesan tidak datang dalam semalam. Setiap baris kode yang ditulis merupakan bagian dari proses panjang menuju hasil yang lebih baik."
+
+</blockquote>
+
+<h2>
+Titik Balik
+</h2>
+
+<div class="section-image">
+<img src="titik-balik.jpg" loading="lazy">
+</div>
+
+<p>
+
+Perubahan besar terjadi ketika berbagai hasil karya mulai dipublikasikan secara daring. Masukan dari pengguna menjadi motivasi untuk terus meningkatkan kualitas desain, memperbaiki performa, serta menambahkan fitur-fitur baru yang lebih bermanfaat.
+
 </p>
 
 <p>
-Selain fokus pada bisnis, ia juga tetap aktif berbagi pengalaman melalui media sosial agar bisa memberikan motivasi kepada anak-anak muda yang ingin memulai usaha sendiri.
+
+Dari berbagai proyek tersebut lahir pengalaman baru dalam membangun website berita, dashboard admin, halaman portofolio, hingga aplikasi berbasis JavaScript yang berjalan secara real-time.
+
 </p>
 
-<h2>Mimpi ke Depan</h2>
+<h2>
+Dengan Kerja Keras
+</h2>
+
+<div class="section-image">
+<img src="kerja-keras.jpg" loading="lazy">
+</div>
 
 <p>
-Sahrul berharap usahanya dapat membuka lebih banyak lapangan pekerjaan dan memberikan manfaat bagi masyarakat. Baginya, kesuksesan akan terasa lebih berarti apabila bisa membawa dampak positif bagi orang lain.
+
+Belajar secara mandiri membutuhkan disiplin tinggi. Setiap hari digunakan untuk membaca dokumentasi, mencoba teknologi baru, memperbaiki kesalahan, serta terus melakukan eksperimen agar hasil yang dibuat menjadi semakin baik.
+
 </p>
 
-<div class="quote">
-"Saya ingin terus berkembang dan membantu lebih banyak orang agar berani mengejar impian mereka."
+<p>
+
+Tidak semua proses berjalan mulus. Banyak tantangan yang harus dihadapi, mulai dari error pada program hingga proses debugging yang memerlukan waktu cukup lama. Namun pengalaman tersebut justru menjadi bagian penting dalam meningkatkan kemampuan.
+
+</p>
+
+<h2>
+Kesuksesan
+</h2>
+
+<div class="section-image">
+<img src="kesuksesan.jpg" loading="lazy">
+</div>
+
+<p>
+
+Seiring waktu berbagai website yang dikembangkan mulai memiliki tampilan yang lebih profesional. Fokus utama bukan hanya membuat desain menarik, tetapi juga memastikan website cepat, responsif, mudah digunakan, dan nyaman dibaca pada berbagai ukuran layar.
+
+</p>
+
+<p>
+
+Berbagai fitur modern seperti dark mode, progress membaca, animasi halus, lazy loading gambar, serta optimasi performa mulai diterapkan agar memberikan pengalaman terbaik kepada pengunjung.
+
+</p>
+
+<h2>
+Harapan dan Mimpi
+</h2>
+
+<div class="section-image">
+<img src="mimpi.jpg" loading="lazy">
+</div>
+
+<p>
+
+Ke depan, target utama adalah terus mengembangkan kemampuan dalam bidang pengembangan web serta membangun lebih banyak proyek yang dapat memberikan manfaat bagi banyak orang.
+
+</p>
+
+<p>
+
+Semangat belajar yang konsisten menjadi modal utama untuk terus berkembang di dunia teknologi yang berubah sangat cepat.
+
+</p>
+
+<div class="author-card">
+
+<img src="author.jpg" alt="Author">
+
+<div>
+
+<h3>Redaksi MUZI NEWS</h3>
+
+<p>
+Portal berita digital yang menyajikan informasi seputar teknologi, inspirasi, bisnis, dan perkembangan dunia digital dengan desain modern dan pengalaman membaca yang nyaman.
+</p>
+
+</div>
+
 </div>
 
 </div>
 
-<div class="footer">
-© 2026 Portal Berita Inspirasi
 </div>
 
-</div>
+<footer>
+
+<h2>MUZI NEWS</h2>
+
+<p>
+© 2026 MUZI NEWS. All Rights Reserved.
+</p>
+
+</footer>
+
+<script>
+
+const bar=document.getElementById("bar");
+
+window.addEventListener("scroll",()=>{
+
+const total=document.documentElement.scrollHeight-window.innerHeight;
+
+const progress=(window.scrollY/total)*100;
+
+bar.style.width=progress+"%";
+
+});
+
+</script>
 
 </body>
+
 </html>
