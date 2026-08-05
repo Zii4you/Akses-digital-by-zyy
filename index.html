@@ -1,0 +1,2901 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium AI SaaS Dashboard 2026</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        
+        :root{
+            --primary-blue:#0066ff;
+            --neon-cyan:#00d4ff;
+            --neon-purple:#b700ff;
+            --dark-bg:#0a0e27;
+            --dark-secondary:#1a1f3a;
+            --dark-tertiary:#252d45;
+            --glass-bg:rgba(15,23,42,0.8);
+            --glass-border:rgba(0,212,255,0.2);
+            --text-primary:#e0e8ff;
+            --text-secondary:#a0aac0;
+            --success:#00d97e;
+            --warning:#ffb800;
+            --danger:#ff4757;
+            --info:#00bfff;
+        }
+        
+        html{scroll-behavior:smooth;overflow-x:hidden}
+        
+        body{
+            background-color:var(--dark-bg);
+            color:var(--text-primary);
+            font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+            overflow-x:hidden;
+            position:relative;
+        }
+        
+        body::before{
+            content:'';
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:
+                linear-gradient(45deg,rgba(0,102,255,0.05) 0%,transparent 50%),
+                linear-gradient(-45deg,rgba(183,0,255,0.05) 0%,transparent 50%);
+            pointer-events:none;
+            z-index:1;
+        }
+        
+        body::after{
+            content:'';
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-image:
+                url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,212,255,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            pointer-events:none;
+            z-index:1;
+            opacity:0.5;
+        }
+        
+        .loading-container{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:linear-gradient(135deg,#0a0e27 0%,#1a1f3a 100%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:9999;
+            backdrop-filter:blur(10px);
+        }
+        
+        .loading-content{
+            text-align:center;
+            position:relative;
+            z-index:10;
+        }
+        
+        .logo-3d{
+            width:100px;
+            height:100px;
+            margin:0 auto 30px;
+            position:relative;
+            animation:float 3s ease-in-out infinite;
+        }
+        
+        .logo-3d-inner{
+            width:100%;
+            height:100%;
+            position:relative;
+            transform-style:preserve-3d;
+            animation:rotate 6s linear infinite;
+        }
+        
+        .logo-3d-face{
+            position:absolute;
+            width:100%;
+            height:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:50px;
+            font-weight:900;
+            background:linear-gradient(135deg,#00d4ff,#0066ff);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+            border:2px solid rgba(0,212,255,0.3);
+            border-radius:20px;
+            box-shadow:0 0 30px rgba(0,212,255,0.3),inset 0 0 20px rgba(0,212,255,0.1);
+        }
+        
+        @keyframes rotate{0%{transform:rotateX(0) rotateY(0) rotateZ(0)}100%{transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg)}}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+        
+        .loading-progress{
+            width:300px;
+            height:8px;
+            background:rgba(0,212,255,0.1);
+            border-radius:10px;
+            margin:40px auto 20px;
+            overflow:hidden;
+            border:1px solid rgba(0,212,255,0.2);
+            box-shadow:0 0 20px rgba(0,212,255,0.2);
+        }
+        
+        .loading-bar{
+            height:100%;
+            background:linear-gradient(90deg,#0066ff,#00d4ff,#b700ff);
+            border-radius:10px;
+            width:0%;
+            animation:progress 3s cubic-bezier(0.4,0,0.2,1) forwards;
+            box-shadow:0 0 20px rgba(0,212,255,0.6);
+        }
+        
+        @keyframes progress{0%{width:0%}50%{width:70%}100%{width:100%}}
+        
+        .loading-text{
+            color:var(--text-secondary);
+            font-size:14px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            margin-top:10px;
+        }
+        
+        .loading-percentage{
+            color:var(--neon-cyan);
+            font-size:28px;
+            font-weight:700;
+            margin-top:20px;
+        }
+        
+        .main-container{
+            display:flex;
+            min-height:100vh;
+            position:relative;
+            z-index:2;
+        }
+        
+        .sidebar{
+            width:280px;
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border-right:1px solid var(--glass-border);
+            padding:30px 20px;
+            position:fixed;
+            height:100vh;
+            overflow-y:auto;
+            box-shadow:inset -1px 0 0 rgba(0,212,255,0.1);
+        }
+        
+        .sidebar::-webkit-scrollbar{width:8px}
+        .sidebar::-webkit-scrollbar-track{background:transparent}
+        .sidebar::-webkit-scrollbar-thumb{background:rgba(0,212,255,0.3);border-radius:4px}
+        .sidebar::-webkit-scrollbar-thumb:hover{background:rgba(0,212,255,0.5)}
+        
+        .sidebar-brand{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            margin-bottom:40px;
+            padding:15px;
+            border-radius:12px;
+            background:linear-gradient(135deg,rgba(0,102,255,0.1),rgba(183,0,255,0.1));
+            border:1px solid var(--glass-border);
+        }
+        
+        .sidebar-brand-icon{
+            width:40px;
+            height:40px;
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:20px;
+            font-weight:900;
+            color:white;
+        }
+        
+        .sidebar-brand-text{
+            font-size:16px;
+            font-weight:700;
+            background:linear-gradient(135deg,#00d4ff,#b700ff);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
+        
+        .sidebar-nav{
+            list-style:none;
+            margin-bottom:30px;
+        }
+        
+        .sidebar-nav-item{
+            margin-bottom:8px;
+        }
+        
+        .sidebar-nav-link{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:12px 15px;
+            color:var(--text-secondary);
+            text-decoration:none;
+            border-radius:10px;
+            transition:all 0.3s ease;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .sidebar-nav-link::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:-100%;
+            width:100%;
+            height:100%;
+            background:linear-gradient(90deg,transparent,rgba(0,212,255,0.2),transparent);
+            transition:left 0.5s;
+        }
+        
+        .sidebar-nav-link:hover::before{left:100%}
+        
+        .sidebar-nav-link:hover{
+            color:var(--neon-cyan);
+            background:rgba(0,212,255,0.1);
+            padding-left:20px;
+            box-shadow:0 0 20px rgba(0,212,255,0.2);
+        }
+        
+        .sidebar-nav-link.active{
+            background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,212,255,0.1));
+            color:var(--neon-cyan);
+            border-left:3px solid var(--neon-cyan);
+            box-shadow:0 0 20px rgba(0,212,255,0.3);
+        }
+        
+        .sidebar-nav-icon{
+            font-size:18px;
+            width:20px;
+            text-align:center;
+        }
+        
+        .main-content{
+            margin-left:280px;
+            flex:1;
+            background:var(--dark-bg);
+            position:relative;
+        }
+        
+        .navbar{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border-bottom:1px solid var(--glass-border);
+            padding:20px 30px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 8px 32px rgba(0,212,255,0.1);
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
+        
+        .navbar-left{
+            display:flex;
+            align-items:center;
+            gap:20px;
+            flex:1;
+        }
+        
+        .breadcrumb-nav{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-size:14px;
+        }
+        
+        .breadcrumb-item{
+            color:var(--text-secondary);
+        }
+        
+        .breadcrumb-item.active{
+            color:var(--neon-cyan);
+            font-weight:600;
+        }
+        
+        .navbar-search{
+            position:relative;
+            width:250px;
+        }
+        
+        .navbar-search-input{
+            width:100%;
+            padding:10px 15px 10px 40px;
+            background:rgba(0,212,255,0.05);
+            border:1px solid var(--glass-border);
+            border-radius:10px;
+            color:var(--text-primary);
+            font-size:14px;
+            transition:all 0.3s ease;
+        }
+        
+        .navbar-search-input:focus{
+            outline:none;
+            background:rgba(0,212,255,0.1);
+            border-color:var(--neon-cyan);
+            box-shadow:0 0 20px rgba(0,212,255,0.2);
+        }
+        
+        .navbar-search-icon{
+            position:absolute;
+            left:12px;
+            top:50%;
+            transform:translateY(-50%);
+            color:var(--text-secondary);
+            font-size:16px;
+        }
+        
+        .navbar-right{
+            display:flex;
+            align-items:center;
+            gap:20px;
+        }
+        
+        .navbar-item{
+            position:relative;
+            cursor:pointer;
+        }
+        
+        .navbar-icon-btn{
+            width:40px;
+            height:40px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:rgba(0,212,255,0.05);
+            border:1px solid var(--glass-border);
+            border-radius:10px;
+            color:var(--text-secondary);
+            cursor:pointer;
+            transition:all 0.3s ease;
+            font-size:18px;
+        }
+        
+        .navbar-icon-btn:hover{
+            background:rgba(0,212,255,0.15);
+            color:var(--neon-cyan);
+            box-shadow:0 0 20px rgba(0,212,255,0.3);
+            transform:translateY(-2px);
+        }
+        
+        .navbar-icon-badge{
+            position:absolute;
+            top:-5px;
+            right:-5px;
+            width:20px;
+            height:20px;
+            background:linear-gradient(135deg,#ff4757,#ff6348);
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:white;
+            font-size:11px;
+            font-weight:700;
+            animation:pulse 2s infinite;
+        }
+        
+        @keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,71,87,0.7)}50%{transform:scale(1.1);box-shadow:0 0 0 6px rgba(255,71,87,0.3)}}
+        
+        .navbar-divider{
+            width:1px;
+            height:25px;
+            background:var(--glass-border);
+        }
+        
+        .navbar-user{
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+        
+        .navbar-user-avatar{
+            width:40px;
+            height:40px;
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:700;
+            cursor:pointer;
+            transition:all 0.3s ease;
+        }
+        
+        .navbar-user-avatar:hover{
+            transform:scale(1.05);
+            box-shadow:0 0 20px rgba(0,212,255,0.4);
+        }
+        
+        .navbar-user-info{
+            display:flex;
+            flex-direction:column;
+            gap:2px;
+        }
+        
+        .navbar-user-name{
+            font-size:13px;
+            font-weight:600;
+            color:var(--text-primary);
+        }
+        
+        .navbar-user-status{
+            font-size:11px;
+            color:var(--success);
+        }
+        
+        .live-indicator{
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            font-size:12px;
+            color:var(--danger);
+            font-weight:600;
+        }
+        
+        .live-dot{
+            width:6px;
+            height:6px;
+            background:var(--danger);
+            border-radius:50%;
+            animation:blink 1.5s infinite;
+        }
+        
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+        
+        .page-content{
+            padding:30px;
+        }
+        
+        .row{
+            display:grid;
+            gap:20px;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            margin-bottom:30px;
+        }
+        
+        .stat-card{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:25px;
+            position:relative;
+            overflow:hidden;
+            transition:all 0.3s ease;
+            box-shadow:0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .stat-card::before{
+            content:'';
+            position:absolute;
+            top:-50%;
+            right:-50%;
+            width:200%;
+            height:200%;
+            background:linear-gradient(45deg,transparent,rgba(0,212,255,0.1),transparent);
+            animation:shine 3s infinite;
+            opacity:0;
+            transition:opacity 0.3s ease;
+        }
+        
+        @keyframes shine{0%{transform:translate(-100%,-100%)}100%{transform:translate(100%,100%)}}
+        
+        .stat-card:hover{
+            border-color:var(--neon-cyan);
+            background:rgba(0,212,255,0.08);
+            transform:translateY(-8px);
+            box-shadow:0 15px 40px rgba(0,212,255,0.3);
+        }
+        
+        .stat-card:hover::before{opacity:1}
+        
+        .stat-card-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            margin-bottom:20px;
+        }
+        
+        .stat-card-icon{
+            width:50px;
+            height:50px;
+            background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,212,255,0.2));
+            border:1px solid var(--glass-border);
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:24px;
+            color:var(--neon-cyan);
+        }
+        
+        .stat-card-trend{
+            display:flex;
+            align-items:center;
+            gap:5px;
+            font-size:12px;
+            padding:6px 12px;
+            background:rgba(0,215,126,0.1);
+            border:1px solid rgba(0,215,126,0.2);
+            border-radius:8px;
+            color:var(--success);
+            font-weight:600;
+        }
+        
+        .stat-card-trend.down{
+            background:rgba(255,71,87,0.1);
+            border-color:rgba(255,71,87,0.2);
+            color:var(--danger);
+        }
+        
+        .stat-card-label{
+            color:var(--text-secondary);
+            font-size:13px;
+            margin-bottom:10px;
+        }
+        
+        .stat-card-value{
+            font-size:28px;
+            font-weight:700;
+            background:linear-gradient(135deg,var(--text-primary),var(--neon-cyan));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+            margin-bottom:10px;
+        }
+        
+        .stat-card-change{
+            font-size:12px;
+            color:var(--text-secondary);
+        }
+        
+        .chart-container{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:25px;
+            position:relative;
+            overflow:hidden;
+            box-shadow:0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .chart-container:hover{
+            border-color:var(--neon-cyan);
+            box-shadow:0 15px 40px rgba(0,212,255,0.2);
+        }
+        
+        .chart-title{
+            font-size:18px;
+            font-weight:700;
+            margin-bottom:20px;
+            color:var(--text-primary);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        
+        .chart-period-selector{
+            display:flex;
+            gap:10px;
+            background:rgba(0,212,255,0.05);
+            border:1px solid var(--glass-border);
+            border-radius:8px;
+            padding:4px;
+        }
+        
+        .chart-period-btn{
+            padding:6px 12px;
+            border:none;
+            background:transparent;
+            color:var(--text-secondary);
+            cursor:pointer;
+            border-radius:6px;
+            font-size:11px;
+            font-weight:600;
+            transition:all 0.3s ease;
+        }
+        
+        .chart-period-btn.active{
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            color:white;
+            box-shadow:0 0 15px rgba(0,212,255,0.4);
+        }
+        
+        .progress-ring{
+            width:120px;
+            height:120px;
+            transform:rotate(-90deg);
+        }
+        
+        .progress-ring-circle{
+            transition:stroke-dashoffset 0.5s ease;
+            transform-origin:50% 50%;
+        }
+        
+        .progress-ring-text{
+            font-size:24px;
+            font-weight:700;
+            text-anchor:middle;
+            fill:var(--text-primary);
+        }
+        
+        .quick-action{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+            gap:15px;
+            margin-bottom:30px;
+        }
+        
+        .action-btn{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:12px;
+            padding:20px;
+            text-align:center;
+            cursor:pointer;
+            transition:all 0.3s ease;
+            color:var(--text-secondary);
+            text-decoration:none;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:10px;
+            font-size:13px;
+        }
+        
+        .action-btn:hover{
+            border-color:var(--neon-cyan);
+            background:rgba(0,212,255,0.1);
+            transform:translateY(-6px);
+            box-shadow:0 12px 30px rgba(0,212,255,0.3);
+            color:var(--neon-cyan);
+        }
+        
+        .action-btn-icon{
+            font-size:28px;
+            width:50px;
+            height:50px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,212,255,0.2));
+            border-radius:10px;
+        }
+        
+        .recent-activity{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:25px;
+        }
+        
+        .activity-item{
+            display:flex;
+            gap:15px;
+            padding:15px;
+            border-radius:10px;
+            transition:all 0.3s ease;
+            margin-bottom:15px;
+            border-left:3px solid transparent;
+        }
+        
+        .activity-item:last-child{margin-bottom:0}
+        
+        .activity-item:hover{
+            background:rgba(0,212,255,0.05);
+            border-left-color:var(--neon-cyan);
+        }
+        
+        .activity-icon{
+            width:40px;
+            height:40px;
+            background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,212,255,0.2));
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            flex-shrink:0;
+            color:var(--neon-cyan);
+        }
+        
+        .activity-content{
+            flex:1;
+            min-width:0;
+        }
+        
+        .activity-title{
+            font-size:13px;
+            font-weight:600;
+            color:var(--text-primary);
+            margin-bottom:4px;
+        }
+        
+        .activity-time{
+            font-size:12px;
+            color:var(--text-secondary);
+        }
+        
+        .transaction-item{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px;
+            border-radius:10px;
+            transition:all 0.3s ease;
+            margin-bottom:15px;
+            border-left:3px solid transparent;
+        }
+        
+        .transaction-item:last-child{margin-bottom:0}
+        
+        .transaction-item:hover{
+            background:rgba(0,212,255,0.05);
+            border-left-color:var(--neon-cyan);
+            transform:translateX(5px);
+        }
+        
+        .transaction-info{
+            display:flex;
+            gap:12px;
+            flex:1;
+            align-items:center;
+        }
+        
+        .transaction-icon{
+            width:40px;
+            height:40px;
+            background:linear-gradient(135deg,rgba(0,102,255,0.2),rgba(0,212,255,0.2));
+            border-radius:10px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            color:var(--neon-cyan);
+        }
+        
+        .transaction-details{
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+        }
+        
+        .transaction-name{
+            font-size:13px;
+            font-weight:600;
+            color:var(--text-primary);
+        }
+        
+        .transaction-date{
+            font-size:12px;
+            color:var(--text-secondary);
+        }
+        
+        .transaction-amount{
+            font-size:14px;
+            font-weight:700;
+            color:var(--neon-cyan);
+        }
+        
+        .transaction-amount.positive{
+            color:var(--success);
+        }
+        
+        .transaction-amount.negative{
+            color:var(--danger);
+        }
+        
+        .package-card{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:30px;
+            position:relative;
+            overflow:hidden;
+            transition:all 0.4s ease;
+            cursor:pointer;
+            min-height:400px;
+            display:flex;
+            flex-direction:column;
+        }
+        
+        .package-card::before{
+            content:'';
+            position:absolute;
+            top:-50%;
+            right:-50%;
+            width:200%;
+            height:200%;
+            background:linear-gradient(45deg,transparent,rgba(0,212,255,0.1),transparent);
+            animation:shine 3s infinite;
+            opacity:0;
+            transition:opacity 0.3s ease;
+        }
+        
+        .package-card::after{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(183,0,255,0.1));
+            opacity:0;
+            transition:opacity 0.3s ease;
+            pointer-events:none;
+        }
+        
+        .package-card:hover{
+            border-color:var(--neon-cyan);
+            transform:translateY(-12px);
+            box-shadow:0 20px 50px rgba(0,212,255,0.4);
+        }
+        
+        .package-card:hover::before{opacity:1}
+        .package-card:hover::after{opacity:1}
+        
+        .package-card.featured{
+            border-color:var(--neon-cyan);
+            box-shadow:0 0 30px rgba(0,212,255,0.3);
+            transform:scale(1.02);
+            background:linear-gradient(135deg,rgba(0,102,255,0.1),rgba(0,212,255,0.1));
+        }
+        
+        .package-badge{
+            position:absolute;
+            top:20px;
+            right:20px;
+            background:linear-gradient(135deg,#00d4ff,#0066ff);
+            color:white;
+            padding:8px 16px;
+            border-radius:20px;
+            font-size:11px;
+            font-weight:700;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+        
+        .package-name{
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:10px;
+            color:var(--text-primary);
+        }
+        
+        .package-price{
+            font-size:42px;
+            font-weight:900;
+            background:linear-gradient(135deg,var(--text-primary),var(--neon-cyan));
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+            margin-bottom:5px;
+        }
+        
+        .package-period{
+            font-size:13px;
+            color:var(--text-secondary);
+            margin-bottom:25px;
+        }
+        
+        .package-features{
+            flex:1;
+            list-style:none;
+            margin-bottom:25px;
+        }
+        
+        .package-feature{
+            display:flex;
+            gap:10px;
+            align-items:flex-start;
+            padding:10px 0;
+            border-bottom:1px solid rgba(0,212,255,0.1);
+            font-size:13px;
+            color:var(--text-secondary);
+        }
+        
+        .package-feature:last-child{border-bottom:none}
+        
+        .package-feature-icon{
+            color:var(--success);
+            font-size:16px;
+            flex-shrink:0;
+            margin-top:2px;
+        }
+        
+        .package-btn{
+            padding:12px 20px;
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-weight:600;
+            font-size:13px;
+            cursor:pointer;
+            transition:all 0.3s ease;
+            position:relative;
+            overflow:hidden;
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+        }
+        
+        .package-btn::before{
+            content:'';
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:0;
+            height:0;
+            background:rgba(255,255,255,0.2);
+            border-radius:50%;
+            transform:translate(-50%,-50%);
+            transition:width 0.6s,height 0.6s;
+        }
+        
+        .package-btn:hover::before{
+            width:300px;
+            height:300px;
+        }
+        
+        .package-btn:hover{
+            box-shadow:0 0 30px rgba(0,212,255,0.6);
+            transform:scale(1.05);
+        }
+        
+        .modal-overlay{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.7);
+            backdrop-filter:blur(5px);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:1000;
+            opacity:0;
+            visibility:hidden;
+            transition:all 0.3s ease;
+        }
+        
+        .modal-overlay.active{
+            opacity:1;
+            visibility:visible;
+        }
+        
+        .modal-content{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:40px;
+            max-width:500px;
+            width:90%;
+            box-shadow:0 20px 60px rgba(0,212,255,0.3);
+            transform:scale(0.8);
+            transition:transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content{
+            transform:scale(1);
+        }
+        
+        .modal-title{
+            font-size:24px;
+            font-weight:700;
+            margin-bottom:20px;
+            color:var(--text-primary);
+        }
+        
+        .modal-text{
+            color:var(--text-secondary);
+            margin-bottom:20px;
+            line-height:1.6;
+            font-size:14px;
+        }
+        
+        .modal-actions{
+            display:flex;
+            gap:15px;
+            margin-top:30px;
+        }
+        
+        .modal-btn{
+            flex:1;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            font-weight:600;
+            cursor:pointer;
+            transition:all 0.3s ease;
+            font-size:13px;
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+        }
+        
+        .modal-btn-primary{
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            color:white;
+        }
+        
+        .modal-btn-primary:hover{
+            box-shadow:0 0 30px rgba(0,212,255,0.6);
+            transform:translateY(-2px);
+        }
+        
+        .modal-btn-secondary{
+            background:rgba(0,212,255,0.05);
+            color:var(--text-secondary);
+            border:1px solid var(--glass-border);
+        }
+        
+        .modal-btn-secondary:hover{
+            background:rgba(0,212,255,0.15);
+            color:var(--neon-cyan);
+        }
+        
+        .timeline{
+            position:relative;
+            padding:20px 0;
+        }
+        
+        .timeline::before{
+            content:'';
+            position:absolute;
+            left:19px;
+            top:0;
+            bottom:0;
+            width:2px;
+            background:linear-gradient(180deg,var(--neon-cyan),rgba(0,212,255,0.1));
+        }
+        
+        .timeline-item{
+            padding:0 0 30px 60px;
+            position:relative;
+        }
+        
+        .timeline-item:last-child{padding-bottom:0}
+        
+        .timeline-dot{
+            position:absolute;
+            left:0;
+            top:0;
+            width:40px;
+            height:40px;
+            background:var(--glass-bg);
+            border:2px solid var(--neon-cyan);
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:16px;
+            color:var(--neon-cyan);
+            box-shadow:0 0 20px rgba(0,212,255,0.3);
+        }
+        
+        .timeline-content{
+            background:rgba(0,212,255,0.05);
+            border:1px solid var(--glass-border);
+            border-radius:10px;
+            padding:15px;
+        }
+        
+        .timeline-title{
+            font-size:13px;
+            font-weight:600;
+            color:var(--text-primary);
+            margin-bottom:5px;
+        }
+        
+        .timeline-time{
+            font-size:11px;
+            color:var(--text-secondary);
+        }
+        
+        .order-table{
+            width:100%;
+            border-collapse:collapse;
+        }
+        
+        .order-table thead{
+            background:rgba(0,212,255,0.05);
+            border-bottom:1px solid var(--glass-border);
+        }
+        
+        .order-table th{
+            padding:12px;
+            text-align:left;
+            font-size:12px;
+            font-weight:600;
+            color:var(--text-secondary);
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+        }
+        
+        .order-table td{
+            padding:12px;
+            border-bottom:1px solid rgba(0,212,255,0.05);
+            font-size:13px;
+            color:var(--text-primary);
+        }
+        
+        .order-table tbody tr:hover{
+            background:rgba(0,212,255,0.05);
+        }
+        
+        .order-status{
+            display:inline-block;
+            padding:4px 10px;
+            border-radius:6px;
+            font-size:11px;
+            font-weight:600;
+            text-transform:uppercase;
+        }
+        
+        .order-status.pending{
+            background:rgba(255,184,0,0.2);
+            color:var(--warning);
+            border:1px solid rgba(255,184,0,0.3);
+        }
+        
+        .order-status.completed{
+            background:rgba(0,215,126,0.2);
+            color:var(--success);
+            border:1px solid rgba(0,215,126,0.3);
+        }
+        
+        .order-status.cancelled{
+            background:rgba(255,71,87,0.2);
+            color:var(--danger);
+            border:1px solid rgba(255,71,87,0.3);
+        }
+        
+        .floating-widget{
+            position:fixed;
+            bottom:30px;
+            right:30px;
+            z-index:500;
+            animation:float 3s ease-in-out infinite;
+        }
+        
+        .floating-btn{
+            width:55px;
+            height:55px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            border:none;
+            color:white;
+            font-size:24px;
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 10px 30px rgba(0,212,255,0.4);
+            transition:all 0.3s ease;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .floating-btn::before{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(45deg,transparent,rgba(255,255,255,0.2),transparent);
+            animation:shine 3s infinite;
+        }
+        
+        .floating-btn:hover{
+            transform:scale(1.1);
+            box-shadow:0 15px 40px rgba(0,212,255,0.6);
+        }
+        
+        .floating-menu{
+            position:absolute;
+            bottom:70px;
+            right:0;
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:12px;
+            overflow:hidden;
+            box-shadow:0 10px 40px rgba(0,0,0,0.3);
+            opacity:0;
+            visibility:hidden;
+            transform:translateY(10px);
+            transition:all 0.3s ease;
+        }
+        
+        .floating-menu.active{
+            opacity:1;
+            visibility:visible;
+            transform:translateY(0);
+        }
+        
+        .floating-menu-item{
+            padding:12px 20px;
+            cursor:pointer;
+            font-size:13px;
+            color:var(--text-secondary);
+            transition:all 0.2s ease;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            border-bottom:1px solid rgba(0,212,255,0.1);
+        }
+        
+        .floating-menu-item:last-child{border-bottom:none}
+        
+        .floating-menu-item:hover{
+            background:rgba(0,212,255,0.1);
+            color:var(--neon-cyan);
+            padding-left:25px;
+        }
+        
+        .calendar-widget{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:20px;
+        }
+        
+        .calendar-header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+        }
+        
+        .calendar-title{
+            font-size:14px;
+            font-weight:600;
+            color:var(--text-primary);
+        }
+        
+        .calendar-nav{
+            display:flex;
+            gap:10px;
+        }
+        
+        .calendar-nav-btn{
+            width:30px;
+            height:30px;
+            background:rgba(0,212,255,0.05);
+            border:1px solid var(--glass-border);
+            border-radius:6px;
+            color:var(--text-secondary);
+            cursor:pointer;
+            transition:all 0.2s ease;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:14px;
+        }
+        
+        .calendar-nav-btn:hover{
+            background:rgba(0,212,255,0.15);
+            color:var(--neon-cyan);
+        }
+        
+        .calendar-grid{
+            display:grid;
+            grid-template-columns:repeat(7,1fr);
+            gap:5px;
+        }
+        
+        .calendar-day-header{
+            text-align:center;
+            font-size:11px;
+            font-weight:600;
+            color:var(--text-secondary);
+            padding:5px;
+        }
+        
+        .calendar-day{
+            text-align:center;
+            padding:10px 5px;
+            border-radius:6px;
+            font-size:12px;
+            color:var(--text-secondary);
+            cursor:pointer;
+            transition:all 0.2s ease;
+            border:1px solid transparent;
+        }
+        
+        .calendar-day:hover{
+            background:rgba(0,212,255,0.1);
+            border-color:var(--neon-cyan);
+            color:var(--neon-cyan);
+        }
+        
+        .calendar-day.active{
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            color:white;
+            font-weight:600;
+        }
+        
+        .server-status{
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:15px;
+            padding:25px;
+        }
+        
+        .server-item{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px;
+            margin-bottom:15px;
+            background:rgba(0,212,255,0.05);
+            border-radius:10px;
+            border-left:3px solid var(--neon-cyan);
+        }
+        
+        .server-item:last-child{margin-bottom:0}
+        
+        .server-name{
+            font-size:13px;
+            font-weight:600;
+            color:var(--text-primary);
+            margin-bottom:5px;
+        }
+        
+        .server-usage{
+            font-size:11px;
+            color:var(--text-secondary);
+        }
+        
+        .server-bar{
+            width:100%;
+            height:6px;
+            background:rgba(0,212,255,0.1);
+            border-radius:3px;
+            overflow:hidden;
+            margin-top:8px;
+        }
+        
+        .server-bar-fill{
+            height:100%;
+            background:linear-gradient(90deg,#0066ff,#00d4ff);
+            transition:width 0.5s ease;
+            box-shadow:0 0 10px rgba(0,212,255,0.5);
+        }
+        
+        .server-status-indicator{
+            width:12px;
+            height:12px;
+            background:var(--success);
+            border-radius:50%;
+            animation:pulse 2s infinite;
+        }
+        
+        .pagination{
+            display:flex;
+            justify-content:center;
+            gap:5px;
+            margin-top:20px;
+        }
+        
+        .pagination-btn{
+            width:35px;
+            height:35px;
+            border:1px solid var(--glass-border);
+            background:rgba(0,212,255,0.05);
+            color:var(--text-secondary);
+            border-radius:8px;
+            cursor:pointer;
+            transition:all 0.2s ease;
+            font-size:12px;
+        }
+        
+        .pagination-btn:hover{
+            background:rgba(0,212,255,0.15);
+            border-color:var(--neon-cyan);
+            color:var(--neon-cyan);
+        }
+        
+        .pagination-btn.active{
+            background:linear-gradient(135deg,#0066ff,#00d4ff);
+            border-color:var(--neon-cyan);
+            color:white;
+        }
+        
+        .notification-toast{
+            position:fixed;
+            bottom:30px;
+            left:30px;
+            background:var(--glass-bg);
+            backdrop-filter:blur(20px);
+            border:1px solid var(--glass-border);
+            border-radius:12px;
+            padding:20px;
+            max-width:350px;
+            box-shadow:0 10px 40px rgba(0,0,0,0.3);
+            display:flex;
+            gap:15px;
+            align-items:flex-start;
+            z-index:900;
+            animation:slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn{from{transform:translateX(-400px);opacity:0}to{transform:translateX(0);opacity:1}}
+        
+        .notification-icon{
+            font-size:20px;
+            flex-shrink:0;
+        }
+        
+        .notification-content{
+            flex:1;
+        }
+        
+        .notification-title{
+            font-size:13px;
+            font-weight:600;
+            color:var(--text-primary);
+            margin-bottom:4px;
+        }
+        
+        .notification-text{
+            font-size:12px;
+            color:var(--text-secondary);
+        }
+        
+        .notification-close{
+            cursor:pointer;
+            color:var(--text-secondary);
+            transition:all 0.2s ease;
+            flex-shrink:0;
+        }
+        
+        .notification-close:hover{
+            color:var(--neon-cyan);
+        }
+        
+        @media(max-width:1024px){
+            .sidebar{width:80px;padding:20px 10px}
+            .sidebar-brand{flex-direction:column;gap:8px;margin-bottom:30px}
+            .sidebar-brand-text{display:none}
+            .sidebar-nav-link{justify-content:center;padding:15px 10px}
+            .sidebar-nav-link span{display:none}
+            .main-content{margin-left:80px}
+            .navbar-search{width:150px}
+            .navbar-user-info{display:none}
+        }
+        
+        @media(max-width:768px){
+            .sidebar{
+                width:0;
+                height:auto;
+                position:absolute;
+                top:0;
+                left:0;
+                transform:translateX(-100%);
+                transition:transform 0.3s ease;
+                z-index:200;
+                border-radius:0 15px 15px 0;
+            }
+            
+            .sidebar.mobile-open{transform:translateX(0)}
+            
+            .main-content{margin-left:0}
+            
+            .navbar{padding:15px 20px}
+            
+            .navbar-search{display:none}
+            
+            .page-content{padding:20px}
+            
+            .row{
+                grid-template-columns:1fr;
+                gap:15px;
+                margin-bottom:20px;
+            }
+            
+            .chart-container{padding:20px}
+            
+            .package-card{padding:20px;min-height:auto}
+            
+            .floating-widget{bottom:20px;right:20px}
+            
+            .notification-toast{
+                max-width:calc(100vw - 40px);
+                left:20px;
+                bottom:20px;
+            }
+        }
+        
+        @media(max-width:480px){
+            .navbar-right{gap:10px}
+            
+            .navbar-icon-btn{
+                width:35px;
+                height:35px;
+                font-size:16px;
+            }
+            
+            .page-content{padding:15px}
+            
+            .stat-card{padding:15px}
+            
+            .stat-card-value{font-size:22px}
+            
+            .chart-title{font-size:16px}
+            
+            .package-price{font-size:28px}
+            
+            .quick-action{
+                grid-template-columns:repeat(2,1fr);
+                gap:10px;
+            }
+            
+            .floating-widget{width:50px;height:50px}
+            
+            .floating-btn{width:50px;height:50px;font-size:20px}
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container" id="loadingContainer">
+        <div class="loading-content">
+            <div class="logo-3d">
+                <div class="logo-3d-inner">
+                    <div class="logo-3d-face">AI</div>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+            <div class="loading-text">Initializing Dashboard</div>
+            <div class="loading-percentage" id="loadingPercent">0%</div>
+        </div>
+    </div>
+    
+    <div class="main-container" id="mainContainer" style="opacity:0">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="sidebar-brand-icon">⚡</div>
+                <div class="sidebar-brand-text">NEXUS AI</div>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a href="#dashboard" class="sidebar-nav-link active" data-page="dashboard">
+                        <span class="sidebar-nav-icon"><i class="bi bi-speedometer2"></i></span>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#analytics" class="sidebar-nav-link" data-page="analytics">
+                        <span class="sidebar-nav-icon"><i class="bi bi-graph-up"></i></span>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#orders" class="sidebar-nav-link" data-page="orders">
+                        <span class="sidebar-nav-icon"><i class="bi bi-bag-check"></i></span>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#projects" class="sidebar-nav-link" data-page="projects">
+                        <span class="sidebar-nav-icon"><i class="bi bi-folder-check"></i></span>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#clients" class="sidebar-nav-link" data-page="clients">
+                        <span class="sidebar-nav-icon"><i class="bi bi-people"></i></span>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#packages" class="sidebar-nav-link" data-page="packages">
+                        <span class="sidebar-nav-icon"><i class="bi bi-box"></i></span>
+                        <span>Packages</span>
+                    </a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a href="#settings" class="sidebar-nav-link" data-page="settings">
+                        <span class="sidebar-nav-icon"><i class="bi bi-gear"></i></span>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <div class="navbar">
+                <div class="navbar-left">
+                    <button class="navbar-icon-btn" id="sidebarToggle" style="display:none">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="breadcrumb-nav" id="breadcrumb">
+                        <span class="breadcrumb-item">Dashboard</span>
+                        <span style="color:var(--text-secondary)">›</span>
+                        <span class="breadcrumb-item active">Overview</span>
+                    </div>
+                </div>
+                
+                <div class="navbar-search">
+                    <i class="bi bi-search navbar-search-icon"></i>
+                    <input type="text" class="navbar-search-input" placeholder="Search..." id="globalSearch">
+                </div>
+                
+                <div class="navbar-right">
+                    <div class="navbar-item">
+                        <button class="navbar-icon-btn" id="notificationBtn">
+                            <i class="bi bi-bell"></i>
+                            <span class="navbar-icon-badge" id="notificationBadge">5</span>
+                        </button>
+                    </div>
+                    
+                    <div class="navbar-divider"></div>
+                    
+                    <div class="navbar-user">
+                        <div class="navbar-user-avatar">AD</div>
+                        <div class="navbar-user-info">
+                            <div class="navbar-user-name">Admin User</div>
+                            <div class="navbar-user-status">Online</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-content" id="pageContent">
+                <div id="dashboard-page" class="page-section active">
+                    <div class="quick-action">
+                        <a href="#" class="action-btn" onclick="showNotification('Report Generated','Monthly report exported successfully')">
+                            <div class="action-btn-icon"><i class="bi bi-file-earmark-pdf"></i></div>
+                            <span>Export Report</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="showNotification('Invoice Created','New invoice generated')">
+                            <div class="action-btn-icon"><i class="bi bi-receipt"></i></div>
+                            <span>Create Invoice</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="showNotification('Payment Sent','Payment processed')">
+                            <div class="action-btn-icon"><i class="bi bi-credit-card"></i></div>
+                            <span>Send Payment</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="showNotification('Request Sent','Support ticket created')">
+                            <div class="action-btn-icon"><i class="bi bi-chat-dots"></i></div>
+                            <span>Get Support</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="showNotification('Team Invited','New members added')">
+                            <div class="action-btn-icon"><i class="bi bi-person-plus"></i></div>
+                            <span>Invite Team</span>
+                        </a>
+                        <a href="#" class="action-btn" onclick="showNotification('Settings Updated','Changes saved')">
+                            <div class="action-btn-icon"><i class="bi bi-sliders"></i></div>
+                            <span>Preferences</span>
+                        </a>
+                    </div>
+                    
+                    <div class="row" id="statsRow">
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-wallet2"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>12.5%</span>
+                            </div>
+                            <div class="stat-card-label">Pendapatan Hari Ini</div>
+                            <div class="stat-card-value" id="todayRevenue">Rp 0</div>
+                            <div class="stat-card-change">vs kemarin</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-calendar-week"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>8.3%</span>
+                            </div>
+                            <div class="stat-card-label">Pendapatan Mingguan</div>
+                            <div class="stat-card-value" id="weeklyRevenue">Rp 0</div>
+                            <div class="stat-card-change">7 hari terakhir</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-calendar"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>15.2%</span>
+                            </div>
+                            <div class="stat-card-label">Pendapatan Bulanan</div>
+                            <div class="stat-card-value" id="monthlyRevenue">Rp 0</div>
+                            <div class="stat-card-change">bulan ini</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-clock-history"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>3.7%</span>
+                            </div>
+                            <div class="stat-card-label">Pendapatan Tahunan</div>
+                            <div class="stat-card-value" id="yearlyRevenue">Rp 0</div>
+                            <div class="stat-card-change">12 bulan</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-folder2"></i></div>
+                                <span class="stat-card-trend">2 baru</span>
+                            </div>
+                            <div class="stat-card-label">Total Proyek</div>
+                            <div class="stat-card-value" id="totalProjects">0</div>
+                            <div class="stat-card-change">aktif tahun ini</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-check-circle"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>5</span>
+                            </div>
+                            <div class="stat-card-label">Proyek Selesai</div>
+                            <div class="stat-card-value" id="completedProjects">0</div>
+                            <div class="stat-card-change">bulan ini</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-play-circle"></i></div>
+                                <span class="stat-card-trend">On going</span>
+                            </div>
+                            <div class="stat-card-label">Proyek Berjalan</div>
+                            <div class="stat-card-value" id="runningProjects">0</div>
+                            <div class="stat-card-change">dalam proses</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-person-lines-fill"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>12</span>
+                            </div>
+                            <div class="stat-card-label">Total Klien</div>
+                            <div class="stat-card-value" id="totalClients">0</div>
+                            <div class="stat-card-change">aktif</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-file-text"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>24</span>
+                            </div>
+                            <div class="stat-card-label">Total Invoice</div>
+                            <div class="stat-card-value" id="totalInvoices">0</div>
+                            <div class="stat-card-change">terbit</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-cash-coin"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>8.1%</span>
+                            </div>
+                            <div class="stat-card-label">Profit Margin</div>
+                            <div class="stat-card-value" id="profitMargin">0%</div>
+                            <div class="stat-card-change">tahun ini</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-exclamation-triangle"></i></div>
+                                <span class="stat-card-trend down"><i class="bi bi-arrow-down-short"></i>4.2%</span>
+                            </div>
+                            <div class="stat-card-label">Total Biaya</div>
+                            <div class="stat-card-value" id="totalExpense">Rp 0</div>
+                            <div class="stat-card-change">pengeluaran</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-percent"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>3.9%</span>
+                            </div>
+                            <div class="stat-card-label">Conversion Rate</div>
+                            <div class="stat-card-value" id="conversionRate">0%</div>
+                            <div class="stat-card-change">efektivitas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin-top:30px">
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-award"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>6.8%</span>
+                            </div>
+                            <div class="stat-card-label">Success Rate</div>
+                            <div class="stat-card-value" id="successRate">0%</div>
+                            <div class="stat-card-change">tingkat keberhasilan</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-globe"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>145</span>
+                            </div>
+                            <div class="stat-card-label">User Online</div>
+                            <div class="stat-card-value" id="onlineUsers">0</div>
+                            <div class="stat-card-change">sedang aktif <span class="live-indicator"><span class="live-dot"></span>LIVE</span></div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-eye"></i></div>
+                                <span class="stat-card-trend"><i class="bi bi-arrow-up-short"></i>28%</span>
+                            </div>
+                            <div class="stat-card-label">Pengunjung Hari Ini</div>
+                            <div class="stat-card-value" id="todayVisitor">0</div>
+                            <div class="stat-card-change">traffic hari ini</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-card-header">
+                                <div class="stat-card-icon"><i class="bi bi-clock"></i></div>
+                                <div>
+                                    <div style="font-size:11px;color:var(--text-secondary)">Last Update</div>
+                                    <div id="lastUpdate" style="font-size:12px;color:var(--neon-cyan);font-weight:600">--:-- --</div>
+                                </div>
+                            </div>
+                            <div class="stat-card-label">Waktu Sistem</div>
+                            <div class="stat-card-value" id="currentTime" style="font-size:20px">00:00:00</div>
+                            <div class="stat-card-change" id="currentDate">--</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:20px;margin-top:30px">
+                        <div class="chart-container">
+                            <div class="chart-title">
+                                <span>Revenue Trend</span>
+                                <div class="chart-period-selector">
+                                    <button class="chart-period-btn active" onclick="updateChartPeriod('day')">Day</button>
+                                    <button class="chart-period-btn" onclick="updateChartPeriod('week')">Week</button>
+                                    <button class="chart-period-btn" onclick="updateChartPeriod('month')">Month</button>
+                                </div>
+                            </div>
+                            <canvas id="revenueChart" width="400" height="200"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <div class="chart-title">
+                                <span>Project Distribution</span>
+                            </div>
+                            <canvas id="projectChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:20px;margin-top:20px">
+                        <div class="chart-container">
+                            <div class="chart-title">
+                                <span>Sales Performance</span>
+                            </div>
+                            <canvas id="salesChart" width="400" height="200"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <div class="chart-title">
+                                <span>Customer Satisfaction</span>
+                            </div>
+                            <canvas id="satisfactionChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:20px;margin-top:20px">
+                        <div class="recent-activity">
+                            <div class="chart-title" style="margin-bottom:20px">Recent Activity</div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i class="bi bi-bag-check"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">New Order Received</div>
+                                    <div class="activity-time">5 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i class="bi bi-person"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Client Profile Updated</div>
+                                    <div class="activity-time">15 minutes ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i class="bi bi-folder-check"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Project Milestone Completed</div>
+                                    <div class="activity-time">1 hour ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i class="bi bi-file-earmark-check"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Invoice #2024-001 Generated</div>
+                                    <div class="activity-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon"><i class="bi bi-chat-dots"></i></div>
+                                <div class="activity-content">
+                                    <div class="activity-title">Support Ticket Resolved</div>
+                                    <div class="activity-time">3 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-activity">
+                            <div class="chart-title" style="margin-bottom:20px">Recent Transactions</div>
+                            <div id="transactionsList"></div>
+                            <div class="pagination" id="transactionPagination"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:20px;margin-top:20px">
+                        <div class="chart-container">
+                            <div class="chart-title" style="margin-bottom:20px">Activity Timeline</div>
+                            <div class="timeline" id="activityTimeline"></div>
+                        </div>
+                        
+                        <div class="recent-activity">
+                            <div class="chart-title" style="margin-bottom:20px">Latest Orders</div>
+                            <div style="overflow-x:auto">
+                                <table class="order-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order</th>
+                                            <th>Client</th>
+                                            <th>Status</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="latestOrdersBody"></tbody>
+                                </table>
+                            </div>
+                            <div class="pagination" id="ordersPagination"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="analytics-page" class="page-section" style="display:none">
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:20px">
+                        <div class="chart-container">
+                            <div class="chart-title">Daily Analytics</div>
+                            <canvas id="dailyAnalyticsChart" width="400" height="200"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-title">Revenue Distribution</div>
+                            <canvas id="revenueDistributionChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:20px;margin-top:20px">
+                        <div class="recent-activity">
+                            <div class="chart-title" style="margin-bottom:20px">Top Clients</div>
+                            <div id="topClientsList"></div>
+                        </div>
+                        <div class="recent-activity">
+                            <div class="chart-title" style="margin-bottom:20px">Top Projects</div>
+                            <div id="topProjectsList"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="orders-page" class="page-section" style="display:none">
+                    <div class="recent-activity">
+                        <div class="chart-title" style="margin-bottom:20px">All Orders</div>
+                        <div style="overflow-x:auto">
+                            <table class="order-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Client</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="allOrdersBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="pagination" id="allOrdersPagination"></div>
+                    </div>
+                </div>
+                
+                <div id="projects-page" class="page-section" style="display:none">
+                    <div class="chart-container">
+                        <div class="chart-title" style="margin-bottom:20px">All Projects</div>
+                        <div id="allProjectsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px"></div>
+                        <div class="pagination" id="allProjectsPagination" style="margin-top:20px"></div>
+                    </div>
+                </div>
+                
+                <div id="clients-page" class="page-section" style="display:none">
+                    <div class="chart-container">
+                        <div class="chart-title" style="margin-bottom:20px">All Clients</div>
+                        <div id="allClientsList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px"></div>
+                        <div class="pagination" id="allClientsPagination" style="margin-top:20px"></div>
+                    </div>
+                </div>
+                
+                <div id="packages-page" class="page-section" style="display:none">
+                    <div style="margin-bottom:30px">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+                            <h2 class="chart-title" style="margin:0">Pilih Paket Berlangganan</h2>
+                            <div style="display:flex;align-items:center;gap:10px;background:rgba(0,212,255,0.05);border:1px solid var(--glass-border);border-radius:10px;padding:8px 16px">
+                                <span style="font-size:12px;color:var(--text-secondary)">Bulanan</span>
+                                <input type="checkbox" id="billingToggle" style="width:30px;height:18px;cursor:pointer">
+                                <span style="font-size:12px;color:var(--text-secondary)">Tahunan</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="packagesList" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px"></div>
+                </div>
+                
+                <div id="settings-page" class="page-section" style="display:none">
+                    <div class="chart-container">
+                        <div class="chart-title" style="margin-bottom:20px">Server Status</div>
+                        <div class="server-status">
+                            <div class="server-item">
+                                <div style="flex:1">
+                                    <div class="server-name">CPU Usage</div>
+                                    <div class="server-usage" id="cpuUsageText">0%</div>
+                                    <div class="server-bar">
+                                        <div class="server-bar-fill" id="cpuBar" style="width:0%"></div>
+                                    </div>
+                                </div>
+                                <div class="server-status-indicator"></div>
+                            </div>
+                            
+                            <div class="server-item">
+                                <div style="flex:1">
+                                    <div class="server-name">RAM Usage</div>
+                                    <div class="server-usage" id="ramUsageText">0%</div>
+                                    <div class="server-bar">
+                                        <div class="server-bar-fill" id="ramBar" style="width:0%"></div>
+                                    </div>
+                                </div>
+                                <div class="server-status-indicator"></div>
+                            </div>
+                            
+                            <div class="server-item">
+                                <div style="flex:1">
+                                    <div class="server-name">Storage Usage</div>
+                                    <div class="server-usage" id="storageUsageText">0%</div>
+                                    <div class="server-bar">
+                                        <div class="server-bar-fill" id="storageBar" style="width:0%"></div>
+                                    </div>
+                                </div>
+                                <div class="server-status-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container" style="margin-top:20px">
+                        <div class="chart-title" style="margin-bottom:20px">API Status</div>
+                        <div class="server-status">
+                            <div class="server-item">
+                                <div>
+                                    <div class="server-name">API Server</div>
+                                    <div class="server-usage">Response Time: <span id="apiResponseTime">0ms</span></div>
+                                </div>
+                                <div class="server-status-indicator"></div>
+                            </div>
+                            
+                            <div class="server-item">
+                                <div>
+                                    <div class="server-name">Database</div>
+                                    <div class="server-usage">Uptime: <span id="dbUptime">99.99%</span></div>
+                                </div>
+                                <div class="server-status-indicator"></div>
+                            </div>
+                            
+                            <div class="server-item">
+                                <div>
+                                    <div class="server-name">Network</div>
+                                    <div class="server-usage">Bandwidth: <span id="networkBandwidth">1.2 GB/s</span></div>
+                                </div>
+                                <div class="server-status-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="packageModal">
+        <div class="modal-content">
+            <div class="modal-title">Confirm Package</div>
+            <div class="modal-text" id="modalText">Are you sure you want to subscribe to this package?</div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="modal-btn modal-btn-primary" onclick="confirmPackage()">Confirm</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="floating-widget">
+        <button class="floating-btn" id="floatingBtn" onclick="toggleFloatingMenu()">
+            <i class="bi bi-chat-dots"></i>
+        </button>
+        <div class="floating-menu" id="floatingMenu">
+            <div class="floating-menu-item" onclick="showNotification('WhatsApp','Chat support available on WhatsApp')">
+                <i class="bi bi-whatsapp" style="color:#25d366"></i>
+                <span>WhatsApp Support</span>
+            </div>
+            <div class="floating-menu-item" onclick="showNotification('Email','Send email to support@nexus.ai')">
+                <i class="bi bi-envelope" style="color:var(--neon-cyan)"></i>
+                <span>Email Support</span>
+            </div>
+            <div class="floating-menu-item" onclick="showNotification('Phone','Call +62 812 3456 7890')">
+                <i class="bi bi-telephone" style="color:var(--info)"></i>
+                <span>Phone Support</span>
+            </div>
+            <div class="floating-menu-item" onclick="showNotification('Ticket','Support ticket created #5002')">
+                <i class="bi bi-ticket" style="color:var(--warning)"></i>
+                <span>Support Ticket</span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script>
+        const dashboardState={
+            todayRevenue:0,
+            weeklyRevenue:0,
+            monthlyRevenue:0,
+            yearlyRevenue:0,
+            transactions:[],
+            currentPage:1,
+            transactionChartInstance:null,
+            revenueChartInstance:null,
+            projectChartInstance:null,
+            salesChartInstance:null,
+            satisfactionChartInstance:null,
+            dailyAnalyticsChartInstance:null,
+            revenueDistributionChartInstance:null,
+            selectedPackage:null,
+            isYearlyBilling:false
+        };
+        
+        const clientNames=['Tech Solutions','Digital Marketing Pro','Cloud Systems Inc','AI Ventures','Innovation Labs','Future Tech','Smart Systems','Digital Agency','Cloud Services','Tech Startup'];
+        const projectNames=['Website Redesign','Mobile App','API Integration','Dashboard Development','System Migration','Cloud Setup','Security Audit','Performance Optimization','Data Analytics','AI Implementation'];
+        const orderStatuses=['pending','completed','cancelled'];
+        
+        function initializeApp(){
+            loadFromLocalStorage();
+            setupCharts();
+            generateInitialData();
+            updateDashboard();
+            startRealTimeUpdates();
+            setupEventListeners();
+            setTimeout(()=>{
+                document.getElementById('loadingContainer').style.animation='fadeOut 0.8s ease forwards';
+                setTimeout(()=>{
+                    document.getElementById('loadingContainer').style.display='none';
+                    document.getElementById('mainContainer').style.opacity='1';
+                    document.getElementById('mainContainer').style.animation='fadeIn 0.6s ease forwards';
+                    AOS.init();
+                },300);
+            },3500);
+        }
+        
+        function loadFromLocalStorage(){
+            const saved=localStorage.getItem('dashboardData');
+            if(saved){
+                const data=JSON.parse(saved);
+                dashboardState.todayRevenue=data.todayRevenue||0;
+                dashboardState.weeklyRevenue=data.weeklyRevenue||0;
+                dashboardState.monthlyRevenue=data.monthlyRevenue||0;
+                dashboardState.yearlyRevenue=data.yearlyRevenue||0;
+                dashboardState.transactions=data.transactions||[];
+            }
+        }
+        
+        function saveToLocalStorage(){
+            const data={
+                todayRevenue:dashboardState.todayRevenue,
+                weeklyRevenue:dashboardState.weeklyRevenue,
+                monthlyRevenue:dashboardState.monthlyRevenue,
+                yearlyRevenue:dashboardState.yearlyRevenue,
+                transactions:dashboardState.transactions
+            };
+            localStorage.setItem('dashboardData',JSON.stringify(data));
+        }
+        
+        function generateInitialData(){
+            const today=new Date();
+            const startOfWeek=new Date(today);
+            startOfWeek.setDate(today.getDate()-today.getDay());
+            
+            for(let i=0;i<20;i++){
+                const date=new Date(today);
+                date.setHours(Math.floor(Math.random()*24),Math.floor(Math.random()*60));
+                const amount=Math.floor(Math.random()*1000000)+500000;
+                dashboardState.transactions.push({
+                    id:Math.random().toString(36).substr(2,9),
+                    name:clientNames[Math.floor(Math.random()*clientNames.length)],
+                    amount,
+                    type:Math.random()>0.3?'positive':'negative',
+                    date:date.toISOString(),
+                    icon:'bi-cash-coin'
+                });
+            }
+            
+            dashboardState.transactions.sort((a,b)=>new Date(b.date)-new Date(a.date));
+        }
+        
+        function setupEventListeners(){
+            const sidebarToggle=document.getElementById('sidebarToggle');
+            const sidebar=document.getElementById('sidebar');
+            const navLinks=document.querySelectorAll('.sidebar-nav-link');
+            
+            if(window.innerWidth<=768){
+                sidebarToggle.style.display='flex';
+            }
+            
+            window.addEventListener('resize',()=>{
+                if(window.innerWidth<=768){
+                    sidebarToggle.style.display='flex';
+                }else{
+                    sidebarToggle.style.display='none';
+                    sidebar.classList.remove('mobile-open');
+                }
+            });
+            
+            sidebarToggle?.addEventListener('click',()=>{
+                sidebar.classList.toggle('mobile-open');
+            });
+            
+            navLinks.forEach(link=>{
+                link.addEventListener('click',(e)=>{
+                    e.preventDefault();
+                    const page=link.dataset.page;
+                    showPage(page);
+                    navLinks.forEach(l=>l.classList.remove('active'));
+                    link.classList.add('active');
+                    sidebar.classList.remove('mobile-open');
+                });
+            });
+            
+            document.getElementById('globalSearch').addEventListener('input',(e)=>{
+                const query=e.target.value.toLowerCase();
+            });
+            
+            document.getElementById('billingToggle').addEventListener('change',(e)=>{
+                dashboardState.isYearlyBilling=e.target.checked;
+                renderPackages();
+            });
+        }
+        
+        function showPage(page){
+            const sections=document.querySelectorAll('.page-section');
+            sections.forEach(s=>s.style.display='none');
+            document.getElementById(`${page}-page`).style.display='block';
+            
+            const breadcrumbMap={
+                'dashboard':'Overview',
+                'analytics':'Analytics',
+                'orders':'Orders',
+                'projects':'Projects',
+                'clients':'Clients',
+                'packages':'Packages',
+                'settings':'Settings'
+            };
+            
+            document.querySelector('.breadcrumb-item.active').textContent=breadcrumbMap[page]||'Dashboard';
+        }
+        
+        function setupCharts(){
+            const chartOptions={
+                responsive:true,
+                maintainAspectRatio:true,
+                plugins:{
+                    legend:{
+                        labels:{
+                            color:'#a0aac0',
+                            font:{size:11}
+                        }
+                    }
+                },
+                scales:{
+                    x:{
+                        grid:{color:'rgba(0,212,255,0.05)'},
+                        ticks:{color:'#a0aac0',font:{size:11}}
+                    },
+                    y:{
+                        grid:{color:'rgba(0,212,255,0.05)'},
+                        ticks:{color:'#a0aac0',font:{size:11}}
+                    }
+                }
+            };
+            
+            const revenueCtx=document.getElementById('revenueChart').getContext('2d');
+            dashboardState.revenueChartInstance=new Chart(revenueCtx,{
+                type:'line',
+                data:{
+                    labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+                    datasets:[{
+                        label:'Revenue',
+                        data:[65000,75000,72000,85000,92000,88000,95000],
+                        borderColor:'#00d4ff',
+                        backgroundColor:'rgba(0,212,255,0.1)',
+                        borderWidth:2,
+                        fill:true,
+                        tension:0.4
+                    }]
+                },
+                options:chartOptions
+            });
+            
+            const projectCtx=document.getElementById('projectChart').getContext('2d');
+            dashboardState.projectChartInstance=new Chart(projectCtx,{
+                type:'doughnut',
+                data:{
+                    labels:['Completed','Running','Pending'],
+                    datasets:[{
+                        data:[45,30,25],
+                        backgroundColor:['#00d97e','#0066ff','#ffb800'],
+                        borderColor:'#0a0e27',
+                        borderWidth:2
+                    }]
+                },
+                options:{...chartOptions,plugins:{...chartOptions.plugins,legend:{...chartOptions.plugins.legend,position:'bottom'}}}
+            });
+            
+            const salesCtx=document.getElementById('salesChart').getContext('2d');
+            dashboardState.salesChartInstance=new Chart(salesCtx,{
+                type:'bar',
+                data:{
+                    labels:['Jan','Feb','Mar','Apr','May','Jun'],
+                    datasets:[{
+                        label:'Sales',
+                        data:[400000,500000,450000,600000,700000,750000],
+                        backgroundColor:['#0066ff','#00d4ff','#0066ff','#00d4ff','#0066ff','#00d4ff'],
+                        borderRadius:8,
+                        borderSkipped:false
+                    }]
+                },
+                options:chartOptions
+            });
+            
+            const satisfactionCtx=document.getElementById('satisfactionChart').getContext('2d');
+            dashboardState.satisfactionChartInstance=new Chart(satisfactionCtx,{
+                type:'radar',
+                data:{
+                    labels:['Quality','Service','Support','Price','Delivery'],
+                    datasets:[{
+                        label:'Rating',
+                        data:[85,90,88,82,92],
+                        borderColor:'#00d4ff',
+                        backgroundColor:'rgba(0,212,255,0.1)',
+                        fill:true
+                    }]
+                },
+                options:{...chartOptions,plugins:{...chartOptions.plugins,legend:{...chartOptions.plugins.legend,position:'bottom'}}}
+            });
+            
+            const dailyAnalyticsCtx=document.getElementById('dailyAnalyticsChart').getContext('2d');
+            dashboardState.dailyAnalyticsChartInstance=new Chart(dailyAnalyticsCtx,{
+                type:'area',
+                data:{
+                    labels:['00:00','04:00','08:00','12:00','16:00','20:00','24:00'],
+                    datasets:[{
+                        label:'Visitors',
+                        data:[100,200,150,300,250,400,350],
+                        borderColor:'#00d4ff',
+                        backgroundColor:'rgba(0,212,255,0.1)',
+                        fill:true,
+                        tension:0.4
+                    }]
+                },
+                options:chartOptions
+            });
+            
+            const revenueDistributionCtx=document.getElementById('revenueDistributionChart').getContext('2d');
+            dashboardState.revenueDistributionChartInstance=new Chart(revenueDistributionCtx,{
+                type:'pie',
+                data:{
+                    labels:['Product Sales','Services','Subscription','Consulting'],
+                    datasets:[{
+                        data:[35,25,30,10],
+                        backgroundColor:['#0066ff','#00d4ff','#b700ff','#00d97e'],
+                        borderColor:'#0a0e27',
+                        borderWidth:2
+                    }]
+                },
+                options:{...chartOptions,plugins:{...chartOptions.plugins,legend:{...chartOptions.plugins.legend,position:'bottom'}}}
+            });
+        }
+        
+        function updateChartPeriod(period){
+            document.querySelectorAll('.chart-period-btn').forEach(btn=>btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function updateDashboard(){
+            const today=new Date();
+            today.setHours(0,0,0,0);
+            const todayTransactions=dashboardState.transactions.filter(t=>{
+                const tDate=new Date(t.date);
+                tDate.setHours(0,0,0,0);
+                return tDate.getTime()===today.getTime();
+            });
+            
+            const todayAmount=todayTransactions.reduce((sum,t)=>sum+(t.type==='positive'?t.amount:-t.amount),0);
+            dashboardState.todayRevenue=Math.max(todayAmount,0);
+            
+            document.getElementById('todayRevenue').textContent=formatCurrency(dashboardState.todayRevenue);
+            document.getElementById('weeklyRevenue').textContent=formatCurrency(dashboardState.weeklyRevenue);
+            document.getElementById('monthlyRevenue').textContent=formatCurrency(dashboardState.monthlyRevenue);
+            document.getElementById('yearlyRevenue').textContent=formatCurrency(dashboardState.yearlyRevenue);
+            
+            document.getElementById('totalProjects').textContent='24';
+            document.getElementById('completedProjects').textContent='18';
+            document.getElementById('runningProjects').textContent='6';
+            document.getElementById('totalClients').textContent='42';
+            document.getElementById('totalInvoices').textContent='156';
+            document.getElementById('profitMargin').textContent='42.5%';
+            document.getElementById('totalExpense').textContent=formatCurrency(Math.floor(dashboardState.monthlyRevenue*0.35));
+            document.getElementById('conversionRate').textContent='8.5%';
+            document.getElementById('successRate').textContent='94.2%';
+            document.getElementById('onlineUsers').textContent='287';
+            document.getElementById('todayVisitor').textContent='1,247';
+            
+            updateClock();
+            renderTransactions();
+            renderActivityTimeline();
+            renderLatestOrders();
+            renderTopClients();
+            renderTopProjects();
+            renderAllOrders();
+            renderAllProjects();
+            renderAllClients();
+            renderPackages();
+            renderServerStatus();
+        }
+        
+        function updateClock(){
+            const now=new Date();
+            const hours=String(now.getHours()).padStart(2,'0');
+            const minutes=String(now.getMinutes()).padStart(2,'0');
+            const seconds=String(now.getSeconds()).padStart(2,'0');
+            document.getElementById('currentTime').textContent=`${hours}:${minutes}:${seconds}`;
+            
+            const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+            const dayName=days[now.getDay()];
+            const monthName=months[now.getMonth()];
+            const date=now.getDate();
+            document.getElementById('currentDate').textContent=`${dayName}, ${monthName} ${date}`;
+            
+            const hours24=now.getHours();
+            const mins=now.getMinutes();
+            document.getElementById('lastUpdate').textContent=`${String(hours24).padStart(2,'0')}:${String(mins).padStart(2,'0')}`;
+        }
+        
+        function renderTransactions(){
+            const itemsPerPage=5;
+            const start=(dashboardState.currentPage-1)*itemsPerPage;
+            const end=start+itemsPerPage;
+            const paginatedTransactions=dashboardState.transactions.slice(start,end);
+            
+            const html=paginatedTransactions.map(t=>`
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon"><i class="bi ${t.icon}"></i></div>
+                        <div class="transaction-details">
+                            <div class="transaction-name">${t.name}</div>
+                            <div class="transaction-date">${new Date(t.date).toLocaleString('id-ID')}</div>
+                        </div>
+                    </div>
+                    <div class="transaction-amount ${t.type}">${t.type==='positive'?'+':'-'}${formatCurrency(t.amount)}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('transactionsList').innerHTML=html;
+            
+            const totalPages=Math.ceil(dashboardState.transactions.length/itemsPerPage);
+            let paginationHtml='';
+            for(let i=1;i<=totalPages;i++){
+                paginationHtml+=`<button class="pagination-btn ${i===dashboardState.currentPage?'active':''}" onclick="changePage(${i})">${i}</button>`;
+            }
+            document.getElementById('transactionPagination').innerHTML=paginationHtml;
+        }
+        
+        function changePage(page){
+            dashboardState.currentPage=page;
+            renderTransactions();
+        }
+        
+        function renderActivityTimeline(){
+            const activities=[
+                {icon:'bi-bag-check',title:'Order Placed',time:'Today at 2:30 PM'},
+                {icon:'bi-person',title:'Client Meeting',time:'Today at 1:00 PM'},
+                {icon:'bi-file-earmark',title:'Invoice Created',time:'Yesterday at 4:45 PM'},
+                {icon:'bi-folder-check',title:'Project Milestone',time:'2 days ago'},
+                {icon:'bi-chat-dots',title:'Support Resolved',time:'3 days ago'}
+            ];
+            
+            const html=activities.map(a=>`
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="bi ${a.icon}"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">${a.title}</div>
+                        <div class="timeline-time">${a.time}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('activityTimeline').innerHTML=html;
+        }
+        
+        function renderLatestOrders(){
+            const orders=[
+                {id:'#2024-001',client:'Tech Solutions',status:'completed',value:'Rp 45.000.000'},
+                {id:'#2024-002',client:'Digital Agency',status:'pending',value:'Rp 32.000.000'},
+                {id:'#2024-003',client:'Cloud Systems',status:'completed',value:'Rp 58.000.000'},
+                {id:'#2024-004',client:'AI Ventures',status:'pending',value:'Rp 28.500.000'},
+                {id:'#2024-005',client:'Innovation Labs',status:'cancelled',value:'Rp 15.000.000'}
+            ];
+            
+            const html=orders.map(o=>`
+                <tr>
+                    <td>${o.id}</td>
+                    <td>${o.client}</td>
+                    <td><span class="order-status ${o.status}">${o.status}</span></td>
+                    <td>${o.value}</td>
+                </tr>
+            `).join('');
+            
+            document.getElementById('latestOrdersBody').innerHTML=html;
+            
+            let paginationHtml='';
+            for(let i=1;i<=2;i++){
+                paginationHtml+=`<button class="pagination-btn ${i===1?'active':''}" onclick="">${i}</button>`;
+            }
+            document.getElementById('ordersPagination').innerHTML=paginationHtml;
+        }
+        
+        function renderAllOrders(){
+            const orders=[];
+            const statuses=['pending','completed','cancelled'];
+            for(let i=1;i<=20;i++){
+                orders.push({
+                    id:`#2024-${String(i).padStart(3,'0')}`,
+                    client:clientNames[Math.floor(Math.random()*clientNames.length)],
+                    amount:Math.floor(Math.random()*50000000)+10000000,
+                    status:statuses[Math.floor(Math.random()*statuses.length)],
+                    date:new Date(Date.now()-Math.random()*30*24*60*60*1000).toLocaleDateString('id-ID')
+                });
+            }
+            
+            const html=orders.map(o=>`
+                <tr>
+                    <td>${o.id}</td>
+                    <td>${o.client}</td>
+                    <td>Rp ${(o.amount/1000000).toFixed(1)}M</td>
+                    <td><span class="order-status ${o.status}">${o.status}</span></td>
+                    <td>${o.date}</td>
+                </tr>
+            `).join('');
+            
+            document.getElementById('allOrdersBody').innerHTML=html;
+            
+            let paginationHtml='';
+            for(let i=1;i<=4;i++){
+                paginationHtml+=`<button class="pagination-btn ${i===1?'active':''}" onclick="">${i}</button>`;
+            }
+            document.getElementById('allOrdersPagination').innerHTML=paginationHtml;
+        }
+        
+        function renderTopClients(){
+            const clients=[
+                {name:'Tech Solutions',revenue:'Rp 450.000.000',projects:12},
+                {name:'Digital Agency',revenue:'Rp 380.000.000',projects:8},
+                {name:'Cloud Systems Inc',revenue:'Rp 320.000.000',projects:6},
+                {name:'AI Ventures',revenue:'Rp 290.000.000',projects:5},
+                {name:'Innovation Labs',revenue:'Rp 250.000.000',projects:4}
+            ];
+            
+            const html=clients.map(c=>`
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon"><i class="bi bi-person"></i></div>
+                        <div class="transaction-details">
+                            <div class="transaction-name">${c.name}</div>
+                            <div class="transaction-date">${c.projects} projects</div>
+                        </div>
+                    </div>
+                    <div style="color:var(--neon-cyan);font-weight:600;font-size:13px">${c.revenue}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('topClientsList').innerHTML=html;
+        }
+        
+        function renderTopProjects(){
+            const projects=[
+                {name:'Website Redesign',client:'Tech Solutions',status:'completed',budget:'Rp 85.000.000'},
+                {name:'Mobile App Dev',client:'Digital Agency',status:'completed',budget:'Rp 120.000.000'},
+                {name:'API Integration',client:'Cloud Systems',status:'running',budget:'Rp 65.000.000'},
+                {name:'Dashboard Dev',client:'AI Ventures',status:'running',budget:'Rp 95.000.000'},
+                {name:'System Migration',client:'Innovation',status:'pending',budget:'Rp 150.000.000'}
+            ];
+            
+            const html=projects.map(p=>`
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon"><i class="bi bi-folder2"></i></div>
+                        <div class="transaction-details">
+                            <div class="transaction-name">${p.name}</div>
+                            <div class="transaction-date">${p.client}</div>
+                        </div>
+                    </div>
+                    <div style="text-align:right">
+                        <div style="color:var(--neon-cyan);font-weight:600;font-size:12px;margin-bottom:4px">${p.status}</div>
+                        <div style="color:var(--text-secondary);font-size:11px">${p.budget}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('topProjectsList').innerHTML=html;
+        }
+        
+        function renderAllProjects(){
+            const projects=[];
+            const statuses=['completed','running','pending'];
+            for(let i=0;i<12;i++){
+                projects.push({
+                    name:projectNames[Math.floor(Math.random()*projectNames.length)],
+                    client:clientNames[Math.floor(Math.random()*clientNames.length)],
+                    status:statuses[Math.floor(Math.random()*statuses.length)],
+                    progress:Math.floor(Math.random()*100),
+                    budget:Math.floor(Math.random()*150000000)+50000000
+                });
+            }
+            
+            const html=projects.map(p=>`
+                <div class="stat-card" style="display:flex;flex-direction:column">
+                    <div style="flex:1">
+                        <div class="stat-card-label">${p.client}</div>
+                        <div class="stat-card-value" style="font-size:16px;margin-bottom:15px">${p.name}</div>
+                        <div style="margin-bottom:12px">
+                            <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:12px">
+                                <span>Progress</span>
+                                <span style="color:var(--neon-cyan)">${p.progress}%</span>
+                            </div>
+                            <div style="width:100%;height:6px;background:rgba(0,212,255,0.1);border-radius:3px;overflow:hidden">
+                                <div style="width:${p.progress}%;height:100%;background:linear-gradient(90deg,#0066ff,#00d4ff);box-shadow:0 0 10px rgba(0,212,255,0.5)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-top:15px;border-top:1px solid rgba(0,212,255,0.1);font-size:12px;color:var(--text-secondary)">Budget: Rp ${(p.budget/1000000).toFixed(0)}M</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('allProjectsList').innerHTML=html;
+        }
+        
+        function renderAllClients(){
+            const clients=[];
+            for(let i=0;i<12;i++){
+                clients.push({
+                    name:clientNames[Math.floor(Math.random()*clientNames.length)],
+                    email:`contact@${clientNames[i].toLowerCase().replace(/\\s/g,'')}.com`,
+                    projects:Math.floor(Math.random()*8)+1,
+                    spent:Math.floor(Math.random()*500000000)+100000000
+                });
+            }
+            
+            const html=clients.map(c=>`
+                <div class="stat-card">
+                    <div style="margin-bottom:15px">
+                        <div class="stat-card-value" style="font-size:16px;margin-bottom:5px">${c.name}</div>
+                        <div class="stat-card-label" style="margin-bottom:0">${c.email}</div>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:15px;border-top:1px solid rgba(0,212,255,0.1)">
+                        <div>
+                            <div style="font-size:11px;color:var(--text-secondary);margin-bottom:5px">Projects</div>
+                            <div style="font-size:18px;font-weight:700;color:var(--neon-cyan)">${c.projects}</div>
+                        </div>
+                        <div>
+                            <div style="font-size:11px;color:var(--text-secondary);margin-bottom:5px">Total Spent</div>
+                            <div style="font-size:13px;font-weight:600">Rp ${(c.spent/1000000).toFixed(0)}M</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('allClientsList').innerHTML=html;
+        }
+        
+        function renderPackages(){
+            const packages=[
+                {name:'Starter',monthlyPrice:299000,yearlyPrice:2990000,features:['5 Projects','10 Users','1GB Storage','Email Support','Basic Analytics']},
+                {name:'Professional',monthlyPrice:899000,yearlyPrice:8990000,features:['Unlimited Projects','50 Users','100GB Storage','Priority Support','Advanced Analytics','API Access'],featured:true},
+                {name:'Enterprise',monthlyPrice:2999000,yearlyPrice:29990000,features:['Unlimited Everything','Unlimited Users','Unlimited Storage','24/7 Phone Support','Custom Analytics','API + Webhooks','Dedicated Account Manager']}
+            ];
+            
+            const html=packages.map(p=>{
+                const price=dashboardState.isYearlyBilling?p.yearlyPrice:p.monthlyPrice;
+                const period=dashboardState.isYearlyBilling?'year':'month';
+                return `
+                    <div class="package-card ${p.featured?'featured':''}">
+                        ${p.featured?'<div class="package-badge">Most Popular</div>':''}
+                        <div class="package-name">${p.name}</div>
+                        <div class="package-price">Rp ${(price/1000000).toFixed(1)}M</div>
+                        <div class="package-period">per ${period}</div>
+                        <ul class="package-features">
+                            ${p.features.map(f=>`
+                                <li class="package-feature">
+                                    <i class="bi bi-check-circle package-feature-icon"></i>
+                                    <span>${f}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <button class="package-btn" onclick="selectPackage('${p.name}',${price})">${p.featured?'Get Started':'Choose Plan'}</button>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('packagesList').innerHTML=html;
+        }
+        
+        function selectPackage(name,price){
+            dashboardState.selectedPackage={name,price};
+            const period=dashboardState.isYearlyBilling?'year':'month';
+            document.getElementById('modalText').textContent=`Subscribe to ${name} plan at Rp ${(price/1000000).toFixed(1)}M per ${period}?`;
+            document.getElementById('packageModal').classList.add('active');
+        }
+        
+        function closeModal(){
+            document.getElementById('packageModal').classList.remove('active');
+        }
+        
+        function confirmPackage(){
+            if(dashboardState.selectedPackage){
+                showNotification('Success',`Subscribed to ${dashboardState.selectedPackage.name} plan`);
+                closeModal();
+            }
+        }
+        
+        function renderServerStatus(){
+            const cpuUsage=Math.floor(Math.random()*60)+20;
+            const ramUsage=Math.floor(Math.random()*70)+15;
+            const storageUsage=Math.floor(Math.random()*50)+20;
+            
+            document.getElementById('cpuUsageText').textContent=`${cpuUsage}%`;
+            document.getElementById('cpuBar').style.width=`${cpuUsage}%`;
+            
+            document.getElementById('ramUsageText').textContent=`${ramUsage}%`;
+            document.getElementById('ramBar').style.width=`${ramUsage}%`;
+            
+            document.getElementById('storageUsageText').textContent=`${storageUsage}%`;
+            document.getElementById('storageBar').style.width=`${storageUsage}%`;
+            
+            document.getElementById('apiResponseTime').textContent=`${Math.floor(Math.random()*50)+10}ms`;
+        }
+        
+        function startRealTimeUpdates(){
+            setInterval(updateClock,1000);
+            setInterval(simulateTransaction,Math.random()*15*60000+5*60000);
+            setInterval(updateCharts,30000);
+            setInterval(renderServerStatus,5000);
+        }
+        
+        function simulateTransaction(){
+            const amount=Math.floor(Math.random()*1000000)+500000;
+            const newTransaction={
+                id:Math.random().toString(36).substr(2,9),
+                name:clientNames[Math.floor(Math.random()*clientNames.length)],
+                amount,
+                type:'positive',
+                date:new Date().toISOString(),
+                icon:'bi-cash-coin'
+            };
+            
+            dashboardState.transactions.unshift(newTransaction);
+            dashboardState.todayRevenue+=amount;
+            dashboardState.weeklyRevenue+=amount;
+            dashboardState.monthlyRevenue+=Math.min(amount,50000000-dashboardState.monthlyRevenue);
+            dashboardState.yearlyRevenue+=amount;
+            
+            saveToLocalStorage();
+            updateDashboard();
+            showNotification('Transaction',`New transaction: Rp ${(amount/1000000).toFixed(1)}M`);
+        }
+        
+        function updateCharts(){
+            if(dashboardState.revenueChartInstance){
+                dashboardState.revenueChartInstance.data.datasets[0].data=[
+                    Math.random()*100000,
+                    Math.random()*100000,
+                    Math.random()*100000,
+                    Math.random()*100000,
+                    Math.random()*100000,
+                    Math.random()*100000,
+                    dashboardState.todayRevenue
+                ];
+                dashboardState.revenueChartInstance.update();
+            }
+        }
+        
+        function formatCurrency(value){
+            if(value>=1000000){
+                return `Rp ${(value/1000000).toFixed(1)}M`;
+            }else if(value>=1000){
+                return `Rp ${(value/1000).toFixed(0)}K`;
+            }
+            return `Rp ${value}`;
+        }
+        
+        function toggleFloatingMenu(){
+            document.getElementById('floatingMenu').classList.toggle('active');
+        }
+        
+        function showNotification(title,message){
+            const notification=document.createElement('div');
+            notification.className='notification-toast';
+            notification.innerHTML=`
+                <div class="notification-icon"><i class="bi bi-check-circle" style="color:var(--success)"></i></div>
+                <div class="notification-content">
+                    <div class="notification-title">${title}</div>
+                    <div class="notification-text">${message}</div>
+                </div>
+                <div class="notification-close" onclick="this.parentElement.remove()"><i class="bi bi-x"></i></div>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(()=>notification.remove(),4000);
+        }
+        
+        const style=document.createElement('style');
+        style.textContent=`
+            @keyframes fadeOut{from{opacity:1}to{opacity:0}}
+            @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        `;
+        document.head.appendChild(style);
+        
+        document.addEventListener('DOMContentLoaded',initializeApp);
+        
+        let loadPercentage=0;
+        const percentInterval=setInterval(()=>{
+            loadPercentage+=Math.random()*30;
+            if(loadPercentage>100)loadPercentage=100;
+            document.getElementById('loadingPercent').textContent=Math.floor(loadPercentage)+'%';
+            if(loadPercentage===100)clearInterval(percentInterval);
+        },300);
+    </script>
+</body>
+</html>
